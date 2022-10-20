@@ -5,3 +5,13 @@ $font-family: 'Montserrat', sans-serif;
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import "node_modules/bootstrap-icons/font/bootstrap-icons.css";
 @import "node_modules/animate.css/animate.min.css";
+
+
+.item-img{
+    height: 150px;
+    max-width: 100%;
+}
+
+.card-text{
+    height: 100px;
+}
