@@ -67,5 +67,10 @@ fetch('https://fakestoreapi.com/products')
         newImg.style.left = (cardBtn.getBoundingClientRect().left+30)+"px";
       },100)
 
+      setTimeout(_=>{
+        cardBtn.classList.add("animate__tada");
+        cardBtn.addEventListener('animationend',_=>cardBtn.classList.remove('animate__tada'))
+      },400)
+
     }
   })
