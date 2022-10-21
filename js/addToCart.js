@@ -1,6 +1,5 @@
 import { cardBtn, cartBox, cartCounter, items, total } from "../main";
 
-
 export const cartCounterUpdate = function () {
   let count = parseInt(cartCounter[0].innerText);
   cartCounter.forEach(current => {
@@ -17,10 +16,28 @@ window.inc = function (event,price) {
   let cartItemCart = event.target.closest('.item-in-cart');
   let cartItemQuantity = cartItemCart.querySelector('.cart-quantity');
   let cartCost = cartItemCart.querySelector('.cart-cost');
-  cartItemQuantity.value = parseInt(cartItemQuantity.value) + 1;
-  cartCost.innerText = parseInt(cartItemQuantity.value) * price;
+  let currentCartItemQuantity = parseInt(cartItemQuantity.value) 
+  cartItemQuantity.value = currentCartItemQuantity + 1;
+  cartCost.innerText = currentCartItemQuantity * price;
 } 
 
+window.dec = function ( event ,price ) {
+  let cartItemCart = event.target.closest('.item-in-cart');
+  let cartItemQuantity = cartItemCart.querySelector('.cart-quantity');
+  let cartCost = cartItemCart.querySelector('.cart-cost');
+  let decBtn =  event.target.closest('.dec');
+
+  let currentCartItemQuantity = parseInt(cartItemQuantity.value) 
+
+  if( currentCartItemQuantity <= 1 ){
+     decBtn.classList.add('disabled');
+  }else{
+    decBtn.classList.remove('disabled');
+    cartItemQuantity.value = currentCartItemQuantity - 1;
+    cartCost.innerText = price - currentCartItemQuantity;
+  }
+
+}
 
 export const createItemInCartBox = function ({ title, image, price }) {
   let div = document.createElement('div');
@@ -35,11 +52,11 @@ export const createItemInCartBox = function ({ title, image, price }) {
         <p class="mb-0">$ <span class="cart-cost" >${price}</span> </p>
         <div class="col-6">
           <div class=" cart-item-quantity input-group input-group-sm">
-              <button class="btn btn-primary" onclick="dec(event,${price})">
+              <button class="btn btn-primary dec" onclick="dec(event,${price})">
                 <i class=" bi bi-dash pe-none"></i>
               </button>
               <input type="text" class=" text-end form-control cart-quantity" value="1">
-              <button class="btn btn-primary" onclick="inc(event,${price})">
+              <button class="btn btn-primary inc" onclick="inc(event,${price})">
                 <i class=" bi bi-plus pe-none"></i>
               </button>
           </div>
