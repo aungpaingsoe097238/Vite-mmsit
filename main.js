@@ -9,8 +9,10 @@ showLoaderUi();
 export const itemRow = document.querySelector('.item-row');
 export const cardBtn = document.querySelector('.cardBtn');
 export const cartCounter = document.querySelectorAll('.cart-counter');
+export const cartBox = document.querySelector('#cartBox');
+export const total = document.querySelector('#total');
 
-let items = [];
+export let items = [];
 
 fetch('https://fakestoreapi.com/products')
   .then(res => res.json())
